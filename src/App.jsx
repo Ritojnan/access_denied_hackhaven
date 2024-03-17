@@ -3,17 +3,16 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import {Text} from '@chakra-ui/react'
+import ChangeRole from './components/ChangeRole'
+import LandingPage from './pages/LandingPage'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
+<LandingPage/>
 
-<h1 className="text-3xl font-bold underline red">
-      Hello world!
-    </h1>
-<Text>hell</Text>
     </>
   )
 }
