@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import React from "react";
 import ChangeRole from "../components/ChangeRole";
@@ -11,12 +12,14 @@ export default function LandingPage() {
   </>;
 }
 {/*<<<<<<< HEAD
+=======
+>>>>>>> 50d0939dc0ab2181318791948ade8f19cb246e82
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Box, HStack, Text, VStack, Button } from "@chakra-ui/react";
+import { Box, HStack, Text, VStack, Button,Heading } from "@chakra-ui/react";
 import Navbar from "./Navbar";
 import WithSubnavigation from "../components/WithSubnavigation";
-
+import TiltCard from "../components/TiltCard";
 const MotionBox = motion(Box);
 const MotionText = motion(Text);
 
@@ -51,6 +54,9 @@ const LandingPage = () => {
   return (
     <>
       <Navbar />
+      <Heading>The spectacle before us was indeed sublime.</Heading>
+
+      <TiltCard/>
       <Box
         display="flex"
         justifyContent="center"
@@ -77,7 +83,7 @@ const LandingPage = () => {
 
         <HStack>
           <MotionText
-            color={"purple"}
+            color={"purple.400"}
             style={{ fontSize: "20px", visibility: isVisible ? "visible" : "hidden" }}
             animate={{ opacity: isVisible ? 1 : 0 }}
             transition={{ duration: 0.45 }}
@@ -86,7 +92,7 @@ const LandingPage = () => {
           </MotionText>
 
           <MotionText
-            color={"purple"}
+            color={"purple.400"}
             style={{ fontSize: "20px", fontWeight: "bold", visibility: isVisible ? "visible" : "hidden" }}
             animate={{ opacity: isVisible ? 1 : 0 }}
             transition={{ duration: 0.45 }}
@@ -120,4 +126,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;*/}
+export default LandingPage;
