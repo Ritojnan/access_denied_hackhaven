@@ -14,6 +14,8 @@ import {
   useBreakpointValue,
   useDisclosure,
   Spacer,
+  Image,
+  HStack
 } from '@chakra-ui/react';
 import {
   HamburgerIcon,
@@ -22,7 +24,6 @@ import {
   ChevronRightIcon,
 } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
-
 function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
 
@@ -63,6 +64,9 @@ function WithSubnavigation() {
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
         <Link to={'/'}>
+          <HStack>
+
+          <Image src="logo.png" w={10} h={10} alt="streamy"/>
           <Text
             textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
             fontWeight={'bold'}
@@ -70,6 +74,8 @@ function WithSubnavigation() {
           >
             Streamy
           </Text>
+          </HStack>
+
           </Link>
           <Spacer/>
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
