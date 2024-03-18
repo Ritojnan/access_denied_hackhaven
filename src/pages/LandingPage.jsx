@@ -65,7 +65,7 @@ const LandingPage = () => {
             style={{
               fontSize: "70px",
               wordWrap: "break-word",
-              maxWidth: "580px",
+              maxWidth: "600px",
               fontWeight:"bold",
               visibility: isVisible ? "visible" : "hidden",
             }}
