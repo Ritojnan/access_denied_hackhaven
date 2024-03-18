@@ -1,3 +1,16 @@
+
+import React from "react";
+import ChangeRole from "../components/ChangeRole";
+import Preview from "../components/Preview";
+import VideoPage from "../pages/VideoPage";
+export default function LandingPage() {
+  return <>
+  <ChangeRole/>
+<Preview/>
+<VideoPage/>
+  </>;
+}
+{/*<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Box, HStack, Text, VStack, Button } from "@chakra-ui/react";
@@ -107,4 +120,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default LandingPage;*/}
