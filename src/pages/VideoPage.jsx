@@ -21,7 +21,7 @@ export default function Component() {
         </header>
         <main className="flex-1 flex justify-center items-center">
           <Avatar className="w-24 h-24 bg-purple-600 rounded-full flex justify-center items-center">
-            <AvatarBadge boxSize="1.0em" bg="green.500" />
+            <AvatarBadge boxSize="1.0em" bg="purple.500" />
           </Avatar>
         </main>
         <footer className="bg-[#1c1c1e] p-4 flex justify-between items-center">

@@ -12,7 +12,7 @@ export default function Preview() {
         <div className={`mb-6 ${isWideScreen ? 'mr-6' : 'lg:mb-0 lg:mr-0'}`}>
           <div className="bg-[#333333] p-4 rounded-lg flex flex-col items-center">
             <Avatar size="2xl">
-              <AvatarBadge boxSize="1.0em" bg="green.500" />
+              <AvatarBadge boxSize="1.0em" bg="purple.500" />
             </Avatar>
             <div className="my-4">
               <SettingsIcon className="text-white h-6 w-6" />
