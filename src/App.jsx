@@ -13,7 +13,7 @@ function App() {
   return (
     <>
     <LandingPage/>
-    <p>lol</p>
+    
     </>
   )
 }
