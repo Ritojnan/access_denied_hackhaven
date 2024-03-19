@@ -36,8 +36,9 @@ const router = createBrowserRouter(
         {/* <Route path="contact" element={<Contact />} action={contactAction} /> */}
       </Route>
       {/* <Route path="dashboard" element={<Dashboard />}>
-
+      
       </Route> */}
+      <Route path='meet' element={<Meet />}/>
       <Route path="*" element={<NotFound />} />
     </Route>
   )
