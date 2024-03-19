@@ -1,8 +1,6 @@
 import { Box, Container, Flex, Text, Link as ChakraLink, Link,useColorMode, useColorModeValue,Stack, Input, Button, Grid } from "@chakra-ui/react";
-import { FaTwitter, FaYoutube, FaInstagram } from 'react-icons/fa';
-import { BiMailSend } from 'react-icons/bi';
 
-export default function Component() {
+export default function Home() {
 
   return (
     <Box pt={10}>
