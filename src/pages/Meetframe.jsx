@@ -11,6 +11,7 @@ import {
 import axios from"axios"
 import { v4 as uuidv4 } from 'uuid';
 import ObjectDetection from "./Coco";
+import FinalMeet from "../components/FinalMeet";
 
 export default function Meetframe() {
   const isConnected = useHMSStore(selectIsConnectedToRoom);
@@ -56,18 +57,17 @@ export default function Meetframe() {
   }, [hmsActions, isConnected]);
 
   return (
-    <div className="p-16">
+    <div >
       {/* <Header /> */}
       {isConnected ? (
         <div>
-        <Conference />
-        
+        <FinalMeet/>        
       </div>
       ) : (
         <JoinForm />
       )}
       <div onClick={()=> generateRoom()}>
-        Click me to genearate code
+        Click me to generate code
       </div>
       <div>
       

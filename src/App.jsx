@@ -21,7 +21,6 @@ import HelpLayout from "./layouts/HelpLayout";
 import Signup from "./components/Signup";
 import Disclaimer from "./pages/Disclaimer.jsx";
 import Meet from "./pages/Meet.jsx";
-import Preview from './components/Preview.jsx'
 import Meetframe from './pages/Meetframe.jsx';
 
 const router = createBrowserRouter(

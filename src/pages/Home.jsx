@@ -1,14 +1,21 @@
 import { Box, Container, Flex, Text, Link as ChakraLink, Link,useColorMode, useColorModeValue,Stack, Input, Button, Grid } from "@chakra-ui/react";
-
+import Transcript from "../components/Transcript";
+import FinalMeet from "../components/FinalMeet";
+import Meet from "../pages/Meet";
+import Conference from "../components/Conference";
+import JoinForm from "../components/JoinForm";
+import Meetframe from "./Meetframe";
 export default function Home() {
 
   return (
     <Box pt={10}>
+{/* <Meet/> */}
+<Meetframe/>
 
       <main>
         <section className="py-6 md:py-12 lg:py-24 xl:py-32"
          style={{ 
-        backgroundImage: `url(./public/bgimg.png)`,
+        backgroundImage: `url(./bgimg.png)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
