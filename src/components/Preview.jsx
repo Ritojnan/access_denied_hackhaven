@@ -3,7 +3,7 @@ import { Avatar, AvatarBadge } from "@chakra-ui/react";
 import { InfoIcon, SettingsIcon } from "@chakra-ui/icons";
 import { useBreakpointValue } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
-import Dictaphone from "./Dictaphone";
+// import Dictaphone from "./Dictaphone";
 
 
 export default function Preview() {
@@ -11,7 +11,7 @@ export default function Preview() {
 
   return (
     <>
-    <Dictaphone/>
+    {/* <Dictaphone/> */}
     <div className="bg-black text-white min-h-screen flex flex-col items-center justify-center">
       <div className="bg-[#1F1F1F] p-6 rounded-lg w-full lg:w-[500px] lg:flex lg:flex-row lg:justify-between lg:items-start">
         <div className={`mb-6 ${isWideScreen ? 'mr-6' : 'lg:mb-0 lg:mr-0'}`}>
