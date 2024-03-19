@@ -11,9 +11,10 @@ export default function Preview() {
       <div className="bg-[#1F1F1F] p-6 rounded-lg w-full lg:w-[500px] lg:flex lg:flex-row lg:justify-between lg:items-start">
         <div className={`mb-6 ${isWideScreen ? 'mr-6' : 'lg:mb-0 lg:mr-0'}`}>
           <div className="bg-[#333333] p-4 rounded-lg flex flex-col items-center">
-            <Avatar size="2xl">
+            {/* <Avatar size="2xl">
               <AvatarBadge boxSize="1.0em" bg="purple.500" />
-            </Avatar>
+            </Avatar> */}
+            <VideoStreamDisplay/>
             <div className="my-4">
               <SettingsIcon className="text-white h-6 w-6" />
             </div>
@@ -40,3 +41,44 @@ export default function Preview() {
     </div>
   );
 }
+
+
+import { useEffect, useRef } from "react";
+
+const VideoStreamDisplay = () => {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const getLocalVideoStream = async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+        }
+      } catch (error) {
+        console.error("Error accessing local video stream:", error);
+      }
+    };
+
+    getLocalVideoStream();
+
+    return () => {
+      // Clean up by stopping the video stream when component unmounts
+      if (videoRef.current && videoRef.current.srcObject) {
+        const stream = videoRef.current.srcObject;
+        const tracks = stream.getTracks();
+
+        tracks.forEach((track) => {
+          track.stop();
+        });
+      }
+    };
+  }, []);
+
+  return (
+    <div className=" rounded-lg overflow-hidden shadow-lg">
+      <video ref={videoRef} className="w-full h-full object-cover" autoPlay muted />
+    </div>
+  );
+};
+

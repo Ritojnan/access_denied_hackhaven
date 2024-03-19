@@ -22,7 +22,7 @@ export default function Meet() {
   }, [hmsActions, isConnected]);
 
   return (
-    <div className="">
+    <div className="p-16">
       {/* <Header /> */}
       {isConnected ? (
         <Conference />
