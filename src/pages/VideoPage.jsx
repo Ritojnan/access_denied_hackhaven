@@ -4,10 +4,13 @@ import { Button } from "@chakra-ui/react";
 import { Input } from "@chakra-ui/react";
 import { MdMic, MdVideocam, MdScreenShare, MdSettings } from "react-icons/md";
 import { useBreakpointValue } from "@chakra-ui/react";
+import CallLayout from "./CallLayout";
+import Call from "../components/Call";
+
 
 export default function Component() {
   const isWideScreen = useBreakpointValue({ base: false, lg: true });
-
+const randomNum=6;
   return (
     <div className="bg-black min-h-screen flex">
       <div className="flex-1 flex flex-col">
@@ -51,8 +54,24 @@ export default function Component() {
                 <TabsTrigger className="text-white py-2 px-4">Chat</TabsTrigger>
                 <TabsTrigger className="text-white py-2 px-4">Participants</TabsTrigger>
               </TabList>
+--------------------------------------------------
+              <Tabs variant='enclosed' >
+           <TabList paddingTop={10}>
+          <Tab>Chat</Tab>
+          <Tab>Participants</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <Call numDivs={randomNum} />
+          </TabPanel>
+          <TabPanel>
+            <p>two!</p>
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
             </div>
           </Tabs> */}
+          
           <div className="p-4 text-white">
             <p>
               Welcome to the Webinar. You can engage with the speaker and other participants through the chat below.

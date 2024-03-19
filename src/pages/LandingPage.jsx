@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+
+import React from "react";
+import ChangeRole from "../components/ChangeRole";
+import Preview from "../components/Preview";
+import VideoPage from "../pages/VideoPage";
+import CallLayout from "./CallLayout";
+export default function LandingPage() {
+  return <>
+  
+   <VideoPage/>
+  </>;
+}
+{/*<<<<<<< HEAD
+=======
+>>>>>>> 50d0939dc0ab2181318791948ade8f19cb246e82
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Box, HStack, Text, VStack, Button,Heading } from "@chakra-ui/react";
