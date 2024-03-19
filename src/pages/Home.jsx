@@ -6,8 +6,15 @@ export default function Home() {
     <Box pt={10}>
 
       <main>
-        <section className="py-6 md:py-12 lg:py-24 xl:py-32">
-          <Container>
+        <section className="py-6 md:py-12 lg:py-24 xl:py-32"
+         style={{ 
+        backgroundImage: `url(./public/bgimg.png)`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        minHeight: '100vh',
+      }}>
+          <Container  bg="rgba(0, 0, 0, 0.85)">
             <Flex direction="column" alignItems="center" textAlign="center" spaceY={4}>
               <Box>
                 <Text fontSize="7xl" fontWeight="bold" letterSpacing="tighter">AI-Powered Video Conferencing</Text>
