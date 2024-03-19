@@ -18,18 +18,14 @@ import {
   AlertTitle,
   AlertDescription,
   CloseButton,
-  FormControl, // Import FormControl
-  FormLabel, // Import FormLabel
+  FormControl, 
+  FormLabel, 
   Divider,
 } from "@chakra-ui/react";
-import {
-  signInWithPopup,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
-} from "firebase/auth";
-import { auth, provider } from "../../firebase/firebaseConfig";
 import { redirect, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
+import { auth } from "../Firebase";
+import {createUserWithEmailAndPassword} from 'firebase/auth'
 
 const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -44,41 +40,26 @@ const Signup = () => {
   });
 
   const navigate = useNavigate();
-
-  const handleSignup = async () => {
+  const handleSignup = () => {
     setIsLoading(true);
-
+    
     try {
-      const user = await createUserWithEmailAndPassword(
-        auth,
-        formData.signupEmail,
-        formData.signupPassword
-      );
-      console.log(user);
-      localStorage.setItem("token", user.user.accessToken);
-      localStorage.setItem("user", JSON.stringify(user.user));
-      
+      createUserWithEmailAndPassword(auth,formData.signupEmail, formData.signupPassword).then(data => console.log(data));
       navigate("/dashboard")
         } catch (error) {
-      // console.log(error)
       setSignupMessage("Invalid email or password");
-      // setSignupMessage(error.message);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleLogin = async () => {
+  const handleLogin = () => {
     try {
       setIsLoading(true);
-          // Sign in with the custom token
-          const userCredential = await signInWithEmailAndPassword(auth,formData.loginEmail, formData.loginPassword);
-          // Access the signed-in user
+
+          const userCredential = createUserWithEmailAndPassword(auth,formData.loginEmail, formData.loginPassword).then(data => console.log(data));
           const user = userCredential.user;
-    
-          console.log('Successfully signed in:', user);
-          localStorage.setItem("token", user.accessToken);
-          localStorage.setItem("user", JSON.stringify(user));
+          // console.log('Successfully signed in:', user);
           navigate("/dashboard");
               
     } catch (error) {
@@ -98,32 +79,32 @@ const Signup = () => {
     });
   };
 
-  const handleGoogleSignup = async () => {
+  // const handleGoogleSignup = async () => {
 
-    try {
-      const result = await signInWithPopup(auth, provider);
-      console.log(result);
-      localStorage.setItem("token", result.user.accessToken);
-      localStorage.setItem("user", JSON.stringify(result.user));
-      navigate("/dashboard");
-    } catch (error) {
-      console.log(error);
+  //   try {
+  //     const result = await signInWithPopup(auth, provider);
+  //     console.log(result);
+  //     localStorage.setItem("token", result.user.accessToken);
+  //     localStorage.setItem("user", JSON.stringify(result.user));
+  //     navigate("/dashboard");
+  //   } catch (error) {
+  //     console.log(error);
 
-    }
-    // signInWithPopup(auth, provider).then((data) => {
-    //   console.log(data);
-    //   setValue(data.user.email);
-    //   localStorage.setItem("email", data.user.email);
-    //   // This gives you a Google Access Token. You can use it to access the Google API.
-    //   const credential = GoogleAuthProvider.credentialFromResult(data);
-    //   const token = credential.accessToken;
-    //   // The signed-in user info.
-    //   const user = data.user;
-    //   // ...
-    //   console.log(user);
-    // })
+  //   }
+  //   // signInWithPopup(auth, provider).then((data) => {
+  //   //   console.log(data);
+  //   //   setValue(data.user.email);
+  //   //   localStorage.setItem("email", data.user.email);
+  //   //   // This gives you a Google Access Token. You can use it to access the Google API.
+  //   //   const credential = GoogleAuthProvider.credentialFromResult(data);
+  //   //   const token = credential.accessToken;
+  //   //   // The signed-in user info.
+  //   //   const user = data.user;
+  //   //   // ...
+  //   //   console.log(user);
+  //   // })
 
-  };
+  // };
 
   return (
     <Box
