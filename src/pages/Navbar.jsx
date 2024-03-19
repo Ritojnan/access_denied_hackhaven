@@ -78,7 +78,7 @@ function WithSubnavigation() {
               <Text
                 textAlign={useBreakpointValue({ base: "center", md: "left" })}
                 fontWeight={"bold"}
-                color={useColorModeValue("white", "black")}
+                color={useColorModeValue("black", "white")}
               >
                 Streamy
               </Text>
