@@ -50,7 +50,7 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors =require('cors')
+const cors = require('cors');
 
 const app = express();
 app.use(cors()); 
@@ -59,12 +59,20 @@ const port = 3001;
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
 
-// Endpoint to receive detected objects
+let detectedObjects = []; // Store detected objects received from POST requests
+
+// Endpoint to receive detected objects via POST request
 app.post('/detected-objects', (req, res) => {
-  const detectedObjects = req.body;
-  console.log('Received detected objects:', detectedObjects);
-  // Process the detected objects here (e.g., save to database, perform additional analysis)
+  const receivedObjects = req.body;
+  console.log('Received detected objects:', receivedObjects);
+  detectedObjects = receivedObjects; // Update detected objects
   res.sendStatus(200); // Respond with success status
+});
+
+// Endpoint to fetch detected objects via GET request
+app.get('/detected-objects', (req, res) => {
+  // Return the stored detected objects
+  res.json(detectedObjects);
 });
 
 // Start the server

@@ -11,6 +11,7 @@ import {
 import axios from"axios"
 import { v4 as uuidv4 } from 'uuid';
 import ObjectDetection from "./Coco";
+import Response from "./HtmlResponse";
 
 export default function Meetframe() {
   const isConnected = useHMSStore(selectIsConnectedToRoom);
@@ -70,7 +71,7 @@ export default function Meetframe() {
         Click me to genearate code
       </div>
       <div>
-      
+      <Response/>
       </div>
 
     </div>
