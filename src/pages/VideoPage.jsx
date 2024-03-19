@@ -23,16 +23,9 @@ const randomNum=6;
           </div>
         </header>
         <main className="flex-1 flex justify-center items-center">
-<<<<<<< HEAD
-        <Call numDivs={randomNum} />
-          {/*<Avatar className="w-24 h-24 bg-purple-600 rounded-full flex justify-center items-center">
-            <AvatarBadge boxSize="1.0em" bg="green.500" />
-  </Avatar>*/}
-=======
           <Avatar className="w-24 h-24 bg-purple-600 rounded-full flex justify-center items-center">
             <AvatarBadge boxSize="1.0em" bg="purple.500" />
           </Avatar>
->>>>>>> 50d0939dc0ab2181318791948ade8f19cb246e82
         </main>
         <footer className="bg-[#1c1c1e] p-4 flex justify-between items-center">
           <div className="flex space-x-4 text-white">

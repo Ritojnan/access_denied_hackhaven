@@ -1,21 +1,3 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import {Text} from '@chakra-ui/react'
-import ChangeRole from './components/ChangeRole'
-import LandingPage from './pages/LandingPage'
-import Meet from './pages/LandingPage'
-
-
-<<<<<<< HEAD
-  return (
-    <>
-    <LandingPage/>
-    
-    </>
-=======
-
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -56,7 +38,6 @@ const router = createBrowserRouter(
       </Route>
       <Route path="*" element={<NotFound />} />
     </Route>
->>>>>>> 50d0939dc0ab2181318791948ade8f19cb246e82
   )
 );
 
