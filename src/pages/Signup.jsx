@@ -127,7 +127,7 @@ const Signup = () => {
 
   return (
     <Box
-      bgImage={"meet_bot.png"} // Replace with your image path
+      bgImage={"/hand.jpg"} // Replace with your image path
       bgSize="cover"
       bgPosition="center"
       h="100vh"
@@ -143,7 +143,7 @@ const Signup = () => {
           w="100%"
         >
           {/* <Image src="/logo.png" alt="Company Logo" mb="4" /> Replace with your logo */}
-          <Tabs isFitted variant="enclosed" colorScheme="purple">
+          <Tabs isFitted variant="enclosed" colorScheme="teal">
             <TabList>
               <Tab>Sign Up</Tab>
               <Tab>Sign In</Tab>
@@ -181,7 +181,7 @@ const Signup = () => {
                     />
                   </FormControl>
                   <Button
-                    colorScheme="purple"
+                    colorScheme="teal"
                     type="submit"
                     onClick={handleSignup}
                     isLoading={isLoading}
@@ -257,7 +257,7 @@ const Signup = () => {
                     />
                   </FormControl>
                   <Button
-                    colorScheme="purple"
+                    colorScheme="teal"
                     type="submit"
                     onClick={handleLogin}
                     isLoading={isLoading} 
