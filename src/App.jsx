@@ -14,7 +14,7 @@ import About from "./pages/About.jsx";
 import Faq from "./pages/help/Faq.jsx";
 import NotFound from "./pages/NotFound.jsx";
 // import Contact, { contactAction } from "./pages/help/Contact.jsx";
-import Dashboard from "./components/Dashboard";
+// import Dashboard from "./components/Dashboard";
 // layouts
 import RootLayout from "./layouts/RootLayout";
 import HelpLayout from "./layouts/HelpLayout";
@@ -35,9 +35,9 @@ const router = createBrowserRouter(
         <Route path="faq" element={<Faq />} />
         {/* <Route path="contact" element={<Contact />} action={contactAction} /> */}
       </Route>
-      <Route path="dashboard" element={<Dashboard />}>
+      {/* <Route path="dashboard" element={<Dashboard />}>
 
-      </Route>
+      </Route> */}
       <Route path="*" element={<NotFound />} />
     </Route>
   )
