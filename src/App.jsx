@@ -19,7 +19,7 @@ import RootLayout from "./layouts/RootLayout";
 import HelpLayout from "./layouts/HelpLayout";
 import Signup from "./components/Signup";
 import Disclaimer from "./pages/Disclaimer.jsx";
-
+//committed 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
