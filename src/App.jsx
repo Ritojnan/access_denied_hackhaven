@@ -22,6 +22,7 @@ import Signup from "./components/Signup";
 import Disclaimer from "./pages/Disclaimer.jsx";
 import Meet from "./pages/Meet.jsx";
 import Preview from './components/Preview.jsx'
+import Meetframe from './pages/Meetframe.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -38,6 +39,7 @@ const router = createBrowserRouter(
       {/* <Route path="dashboard" element={<Dashboard />}>
       
       </Route> */}
+      <Route path='Frame' element={<Meetframe/>}/>
       <Route path='meet' element={<Meet />}/>
       <Route path="*" element={<NotFound />} />
     </Route>

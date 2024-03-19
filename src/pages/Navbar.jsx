@@ -52,7 +52,7 @@ function WithSubnavigation() {
       <Flex
         bg={useColorModeValue("black", "gray.800")}
         color="gray.800" // Change text color to gray.800
-        minH={"60px"}
+        minH={"100px"}
         py={{ base: 2 }}
         px={{ base: 4 }}
         borderBottom={1}
