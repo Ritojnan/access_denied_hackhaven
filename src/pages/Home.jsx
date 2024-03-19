@@ -36,7 +36,7 @@ export default function Home() {
             <Stack spacing={10} px={4} md:px={6}>
               <Stack spacing={4} textAlign="center">
                 <div className="space-y-2">
-                  <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-gray-800">
+                  <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-gray-800 text-black">
                     New Features
                   </div>
                   <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
@@ -100,9 +100,16 @@ export default function Home() {
             Contact Sales
           </Link>
           <Link
-            href="#"
-            className="inline-flex items-center justify-center h-10 px-8 font-medium text-gray-900 bg-white border border-gray-200 rounded-md shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
-          >
+      href="#"
+    className="inline-flex items-center
+   justify-center h-10 px-8 font-medium text-black 
+   bg-transparent border border-gray-200 rounded-md shadow-sm 
+   transition-colors hover:bg-transparent hover:text-gray-500 
+   focus-visible:outline-none focus-visible:ring-1 
+   focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 
+   dark:border-gray-800 dark:text-white dark:hover:text-gray-50 
+   dark:hover:bg-transparent dark:focus-visible:ring-gray-300"
+>
             Learn more
           </Link>
         </div>
