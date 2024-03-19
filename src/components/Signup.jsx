@@ -18,18 +18,14 @@ import {
   AlertTitle,
   AlertDescription,
   CloseButton,
-  FormControl, // Import FormControl
-  FormLabel, // Import FormLabel
+  FormControl, 
+  FormLabel, 
   Divider,
 } from "@chakra-ui/react";
-import {
-  signInWithPopup,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
-} from "firebase/auth";
-import { auth, provider } from "../../firebase/firebaseConfig";
 import { redirect, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
+import { auth } from "../Firebase";
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth'
 
 const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -44,42 +40,26 @@ const Signup = () => {
   });
 
   const navigate = useNavigate();
-
-  const handleSignup = async () => {
+  const handleSignup = () => {
     setIsLoading(true);
-
+    
     try {
-      const user = await createUserWithEmailAndPassword(
-        auth,
-        formData.signupEmail,
-        formData.signupPassword
-      );
-      console.log(user);
-      localStorage.setItem("token", user.user.accessToken);
-      localStorage.setItem("user", JSON.stringify(user.user));
-      
-      navigate("/dashboard")
+      createUserWithEmailAndPassword(auth,formData.signupEmail, formData.signupPassword).then(data => console.log(data));
+      navigate("/")
         } catch (error) {
-      // console.log(error)
       setSignupMessage("Invalid email or password");
-      // setSignupMessage(error.message);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleLogin = async () => {
+  const handleLogin = () => {
     try {
       setIsLoading(true);
-          // Sign in with the custom token
-          const userCredential = await signInWithEmailAndPassword(auth,formData.loginEmail, formData.loginPassword);
-          // Access the signed-in user
-          const user = userCredential.user;
-    
-          console.log('Successfully signed in:', user);
-          localStorage.setItem("token", user.accessToken);
-          localStorage.setItem("user", JSON.stringify(user));
-          navigate("/dashboard");
+
+          signInWithEmailAndPassword(auth,formData.loginEmail, formData.loginPassword).then(data => console.log(data));
+          // console.log('Successfully signed in:', user);
+          navigate("/");
               
     } catch (error) {
       console.log(error);
@@ -105,7 +85,7 @@ const Signup = () => {
       console.log(result);
       localStorage.setItem("token", result.user.accessToken);
       localStorage.setItem("user", JSON.stringify(result.user));
-      navigate("/dashboard");
+      navigate("/");
     } catch (error) {
       console.log(error);
 
@@ -127,7 +107,7 @@ const Signup = () => {
 
   return (
     <Box
-      bgImage={"meet_bot.png"} // Replace with your image path
+      bgImage={"/hand.jpg"} // Replace with your image path
       bgSize="cover"
       bgPosition="center"
       h="100vh"
@@ -143,7 +123,7 @@ const Signup = () => {
           w="100%"
         >
           {/* <Image src="/logo.png" alt="Company Logo" mb="4" /> Replace with your logo */}
-          <Tabs isFitted variant="enclosed" colorScheme="purple">
+          <Tabs isFitted variant="enclosed" colorScheme="teal">
             <TabList>
               <Tab>Sign Up</Tab>
               <Tab>Sign In</Tab>
@@ -181,7 +161,7 @@ const Signup = () => {
                     />
                   </FormControl>
                   <Button
-                    colorScheme="purple"
+                    colorScheme="teal"
                     type="submit"
                     onClick={handleSignup}
                     isLoading={isLoading}
@@ -257,7 +237,7 @@ const Signup = () => {
                     />
                   </FormControl>
                   <Button
-                    colorScheme="purple"
+                    colorScheme="teal"
                     type="submit"
                     onClick={handleLogin}
                     isLoading={isLoading} 

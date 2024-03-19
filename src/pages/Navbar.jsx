@@ -20,6 +20,7 @@ import {
 } from "@chakra-ui/react";
 import { FiSun, FiMoon } from "react-icons/fi";
 
+
 import {
   HamburgerIcon,
   CloseIcon,
@@ -27,6 +28,8 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../Firebase";
 function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
 
@@ -36,7 +39,7 @@ function WithSubnavigation() {
     return <></>;
   }
   const { toggleColorMode } = useColorMode();
-
+  
   return (
     <Box
       position="fixed"
@@ -113,7 +116,7 @@ function WithSubnavigation() {
             Sign In
           </Button>
           <Button
-            as={Link}
+            onClick={()=> signOut}
             display={{ base: "none", md: "inline-flex" }}
             fontSize={"sm"}
             fontWeight={600}
@@ -124,7 +127,7 @@ function WithSubnavigation() {
               bg: "purple.500",
             }}
           >
-            Sign Up
+            Sign Out
           </Button>
           <IconButton onClick={toggleColorMode} pl={2} colorScheme="purple" bg="purple.400" leftIcon={useColorModeValue(<FiMoon />, <FiSun />)}/>
         </Stack>
