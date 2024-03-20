@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from "react";
+import { UserContext } from "../UserContext";
 
 export default function Tasks() {
+  const { userState, setUserState } = useContext(UserContext);
+  const knowTasks = () => {};
+  const assignTask = () => {};
   return (
     <div className="flex flex-col h-screen">
       <header className="flex h-14 items-center border-b px-4 bg-gray-300 dark:bg-purple-500">
-        <a className="flex items-center gap-2 font-semibold" href="#">
+        <div className="flex items-center gap-2 font-semibold" href="#">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -21,7 +25,17 @@ export default function Tasks() {
             <polyline points="22 4 12 14.01 9 11.01"></polyline>
           </svg>
           <span className="text-gray-600 dark:text-gray-300">Tasks</span>
-        </a>
+          {!userState.mod && (
+            <button className="" onClick={knowTasks}>
+            Know my task
+          </button>
+          )}
+          {userState.mod && (
+            <button className="" onClick={assignTask}>
+              Assign tasks
+            </button>
+          )}
+        </div>
         <div className="ml-auto flex items-center gap-4">
           <button className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground rounded-full w-8 h-8 bg-purple-500 text-white dark:bg-purple-500 dark:text-white">
             <svg
@@ -48,7 +62,7 @@ export default function Tasks() {
               height="32"
               className="rounded-full"
               alt="Avatar"
-              style={{ aspectRatio: '32 / 32', objectFit: 'cover' }}
+              style={{ aspectRatio: "32 / 32", objectFit: "cover" }}
             />
             <span className="sr-only">Toggle user menu</span>
           </button>
@@ -56,7 +70,9 @@ export default function Tasks() {
       </header>
       <main className="flex-1 flex flex-col gap-4 p-4 bg-gray-100 dark:bg-gray-900">
         <div className="grid gap-2">
-          <h1 className="font-semibold text-lg text-gray-600 dark:text-gray-300">My Tasks</h1>
+          <h1 className="font-semibold text-lg text-gray-600 dark:text-gray-300">
+            My Tasks
+          </h1>
           <form className="flex items-center gap-4">
             <label
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 sr-only"
@@ -86,7 +102,7 @@ export default function Tasks() {
               <span
                 data-state="checked"
                 className="flex items-center justify-center text-current"
-                style={{ pointerEvents: 'none' }}
+                style={{ pointerEvents: "none" }}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -109,8 +125,12 @@ export default function Tasks() {
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 peer"
                 htmlFor="task-1"
               >
-                <span className="line-clamp-1 font-medium text-gray-800 dark:text-gray-200">Update documentation</span>
-                <p className="text-sm text-gray-500 dark:text-gray-400">Update the documentation with the new features</p>
+                <span className="line-clamp-1 font-medium text-gray-800 dark:text-gray-200">
+                  Update documentation
+                </span>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Update the documentation with the new features
+                </p>
               </label>
             </div>
             <div className="ml-auto flex items-center gap-2">
@@ -169,8 +189,12 @@ export default function Tasks() {
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 peer"
                 htmlFor="task-2"
               >
-                <span className="line-clamp-1 font-medium text-gray-800 dark:text-gray-200">Review wireframes</span>
-                <p className="text-sm text-gray-500 dark:text-gray-400">Provide feedback on the new wireframes</p>
+                <span className="line-clamp-1 font-medium text-gray-800 dark:text-gray-200">
+                  Review wireframes
+                </span>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Provide feedback on the new wireframes
+                </p>
               </label>
             </div>
             <div className="ml-auto flex items-center gap-2">
@@ -229,8 +253,12 @@ export default function Tasks() {
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 peer"
                 htmlFor="task-3"
               >
-                <span className="line-clamp-1 font-medium text-gray-800 dark:text-gray-200">Fix styling issues</span>
-                <p className="text-sm text-gray-500 dark:text-gray-400">Address the UI bugs reported by the QA team</p>
+                <span className="line-clamp-1 font-medium text-gray-800 dark:text-gray-200">
+                  Fix styling issues
+                </span>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Address the UI bugs reported by the QA team
+                </p>
               </label>
             </div>
             <div className="ml-auto flex items-center gap-2">
