@@ -7,6 +7,8 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { extendTheme } from '@chakra-ui/react'
 import '@fontsource-variable/inter';
 import '@fontsource/inter/700.css'
+import { useContext } from "react";
+import { ChatProvider } from "./UserContext.jsx";
 
 const theme = extendTheme({
   fonts: {
@@ -18,10 +20,13 @@ const theme = extendTheme({
 export default theme
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <ChatProvider>
     <ChakraProvider>
       <HMSRoomProvider>
         <App />
       </HMSRoomProvider>
     </ChakraProvider>
+    </ChatProvider>
+    
   </React.StrictMode>
 );

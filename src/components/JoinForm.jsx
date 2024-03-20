@@ -68,7 +68,7 @@ function JoinForm() {
                 />
               </div>
               <button type="submit" className="w-full bg-purple-500 text-white py-2 rounded-lg hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
-                Join →
+                Join <span className="font-bold text-xl">→</span> 
               </button>
              
             </div>
