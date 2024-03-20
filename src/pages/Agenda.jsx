@@ -58,7 +58,7 @@ const MeetingDetails = () => {
     }
 
     return (
-        <div className="flex flex-col w-full min-h-screen">
+        <div className="flex flex-col w-full min-h-screen pt-32">
             <main className="flex-1 p-4 lg:p-6">
                 <div className="mx-auto max-w-6xl grid gap-4">
                     <div className="flex flex-col gap-2">

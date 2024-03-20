@@ -59,7 +59,7 @@ export default function Meetframe() {
   }, [hmsActions, isConnected]);
 
   return (
-    <div >
+    <div className="pt-32" >
       {/* <Header /> */}
       {isConnected ? (
         <div>

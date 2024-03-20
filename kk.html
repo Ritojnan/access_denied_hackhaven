@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Object Detection with COCO-SSD</title>
+  <!-- Import TensorFlow.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+  <style>
+    .my-video {
+      width: 100%;
+      height: 400px;
+    }
+    .object-detection {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>Object Detection with COCO-SSD</h1>
+  
+  <video class="my-video" autoplay muted></video>
+  
+  <canvas class="object-detection"></canvas>
+  
+  <button id="toggleCamera">Enable Camera</button>
+  
+  <div id="predictions">
+    <h2>Predictions:</h2>
+    <ul id="predictionsList"></ul>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', async function () {
+      const webcam = document.querySelector('.my-video');
+      const canvas = document.querySelector('.object-detection');
+      const toggleButton = document.getElementById('toggleCamera');
+      const predictionsList = document.getElementById('predictionsList');
+      
+      let webcamStream;
+      let detectInterval;
+      let cameraEnabled = false;
+
+      // Load the COCO-SSD model
+      const net = await cocoSsd.load();
+
+      // Function to run object detection
+      async function runObjectDetection() {
+        if (webcam.readyState === 4) {
+          canvas.width = webcam.videoWidth;
+          canvas.height = webcam.videoHeight;
+          const detectedObjects = await net.detect(webcam);
+          displayPredictions(detectedObjects);
+          if (detectedObjects.length > 1) {
+            postDetectedObjects(detectedObjects); // Call function to send detected objects to backend
+          }
+        }
+      }
+
+      // Function to display predictions
+      function displayPredictions(predictions) {
+        predictionsList.innerHTML = '';
+        predictions.forEach(prediction => {
+  const listItem = document.createElement('li');
+  listItem.textContent = `${prediction.class}: ${Math.round(prediction.score * 100)}%`;
+  predictionsList.appendChild(listItem);
+});
+
+      }
+
+      // Function to toggle camera
+      function toggleCamera() {
+        if (cameraEnabled) {
+          clearInterval(detectInterval);
+          webcamStream.getTracks().forEach(track => track.stop());
+          predictionsList.innerHTML = '';
+          webcam.style.display = 'none';
+          canvas.style.display = 'none';
+          toggleButton.textContent = 'Enable Camera';
+        } else {
+          startCamera();
+          toggleButton.textContent = 'Disable Camera';
+        }
+        cameraEnabled = !cameraEnabled;
+      }
+
+      // Function to start camera
+      async function startCamera() {
+        try {
+          webcamStream = await navigator.mediaDevices.getUserMedia({ video: true });
+          webcam.srcObject = webcamStream;
+          webcam.style.display = 'block';
+          canvas.style.display = 'block';
+          detectInterval = setInterval(runObjectDetection, 1000); // Adjust interval as needed
+        } catch (error) {
+          console.error('Error accessing webcam:', error);
+        }
+      }
+
+      // Function to send detected objects to backend
+      async function postDetectedObjects(detectedObjects) {
+        try {
+          const response = await fetch('http://localhost:3001/detected-objects', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(detectedObjects)
+          });
+          if (response.ok) {
+            console.log('Detected objects sent successfully');
+          } else {
+            console.error('Failed to send detected objects');
+          }
+        } catch (error) {
+          console.error('Error sending detected objects:', error);
+        }
+      }
+
+      // Event listener for toggle button click
+      toggleButton.addEventListener('click', toggleCamera);
+    });
+  </script>
+</body>
+</html>

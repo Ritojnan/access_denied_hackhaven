@@ -140,7 +140,7 @@ function Meetings() {
   }
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-950 py-12">
+    <div className="bg-gray-50 dark:bg-gray-950 py-12 pt-32">
       <div className="w-full max-w-7xl mx-auto px-4">
         <div className="grid gap-4">
           <div className="flex flex-col gap-2">

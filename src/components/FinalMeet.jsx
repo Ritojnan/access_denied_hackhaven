@@ -67,24 +67,24 @@ const stopSharing = () => {
   };
 
   return (
-    <Flex direction="column" bg="#121212" minH="100vh">
+    <Flex direction="column" bg="#121212" minH="100vh" >
       <Flex p="4" borderBottom="1px" borderColor="gray.800">
-        <Flex alignItems="center" spaceX="4">
-          <Flex alignItems="center" spaceX="2">
+        <Flex alignItems="center" mx="4">
+          <Flex alignItems="center" mx="2">
             <Button bg="red.600" color="white" px="2" py="1" size="sm">
               LIVE
             </Button>
             
             {/* <span className="text-white text-sm">9:30 pm - 10:30 pm</span> */}
           </Flex>
-          <Flex alignItems="center" spaceX="5" >
+          <Flex alignItems="center" mx="5" >
             <Icon as={FaEye} color="white" boxSize="5"className="ml-5" />
             <span className="text-white text-md ml-2">{peerslen} watching</span>
           </Flex>
         </Flex>
         <Spacer />
 
-        <Flex alignItems="center" spaceX="4">
+        <Flex alignItems="center" mx="4">
         <Response/>
         <ChangeRole/>
         </Flex>
@@ -102,7 +102,7 @@ const stopSharing = () => {
           >
             <Conference brb={brb} />
           </Flex>
-          <Flex justify="center" spaceX="4">
+          <Flex justify="center" mx="4">
             <Icon as={FaMicrophone} onClick={toggleMic} color={`${isMicOn ? 'white' : 'red'}`} boxSize="6" marginRight={4} />
             <Icon as={FaVideo} color="white" boxSize="6" marginRight={4} />
   <div onClick={brbHandler} className=" text-sm text-white p-2 border-white border-2 rounded-lg mx-3 mt-[-1vh]">BRB</div>

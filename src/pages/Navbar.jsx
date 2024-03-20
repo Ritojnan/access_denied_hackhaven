@@ -127,6 +127,7 @@ function WithSubnavigation() {
             _hover={{
               bg: "purple.500",
             }}
+            p={2}
           >
             Sign Out
           </Button>
