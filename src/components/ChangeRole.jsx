@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -12,9 +12,12 @@ import {
 } from "@chakra-ui/react";
 import { EmailIcon } from "@chakra-ui/icons";
 import { CloseIcon } from "@chakra-ui/icons";
+import { UserContext } from "../UserContext";
+
 
 export default function ChangeRole() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { userState, setUserState } = useContext(UserContext);
   return (
     <>
       <Button onClick={onOpen}>Change Role</Button>
@@ -49,7 +52,7 @@ export default function ChangeRole() {
                     </p>
                     <div className="flex justify-end space-x-4">
                       <Button colorScheme="purple">Invite</Button>
-                      <Button colorScheme="purple">Join as Moderator</Button>
+                      <Button onClick={() => setUserState({mod: true})} colorScheme="purple">Join as Moderator</Button>
                     </div>
                   </div>
                   <div className="bg-[#252525] p-4 rounded-lg">

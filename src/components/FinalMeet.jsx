@@ -18,12 +18,14 @@ import Conference from "./Conference";
 import { useHMSStore,selectPeers } from "@100mslive/react-sdk";
 import Response from "../pages/HtmlResponse";
 import ChangeRole from "./ChangeRole";
+import { redirect, useNavigate } from "react-router-dom";
 export default function Component() {
   const [inputValue, setInputValue] = useState("");
   const [arrayItems, setArrayItems] = useState([]);
   const [isMicOn, setIsMicOn] = useState(true);
   const peers = useHMSStore(selectPeers);
   const peerslen = peers.length;
+  const navigate = useNavigate();
   const handleChange = (event) => {
     setInputValue(event.target.value);
   };
@@ -122,7 +124,7 @@ const stopSharing = () => {
 )}
 
             <Icon as={FaCog} color="white" boxSize="6" marginRight={4} />
-            <Button bg="red.600" color="white" px="3" py="1.5" size="sm">
+            <Button onClick={()=>navigate("/Task")} bg="red.600" color="white" px="3" py="1.5" size="sm">
               Leave
             </Button>
           </Flex>
