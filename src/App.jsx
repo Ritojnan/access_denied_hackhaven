@@ -23,7 +23,12 @@ import Disclaimer from "./pages/Disclaimer.jsx";
 import Meet from "./pages/Meet.jsx";
 import Meetframe from './pages/Meetframe.jsx';
 import MeetingDetails from './pages/Agenda.jsx';
+<<<<<<< HEAD
 import Tasks from './pages/Tasks.jsx';
+=======
+import { UserContext } from './UserContext.jsx';
+import { useContext } from 'react';
+>>>>>>> ee911e48e2271794f1fb76838ef1be916b37d495
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -50,5 +55,7 @@ const router = createBrowserRouter(
 );
 
 export default function App() {
+  const {userState,setUserState} = useContext(UserContext)
+  console.log(userState.mod);
   return <RouterProvider router={router} />;
 }
