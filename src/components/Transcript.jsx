@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const SpeechRecognitionComponent = () => {
   const [output, setOutput] = useState('');
+  const [fulltext, setFullText] = useState('');
   let recognition = null;
 
   const handleStart = () => {
@@ -21,12 +22,14 @@ const SpeechRecognitionComponent = () => {
 
     // Set recognition parameters
     recognition.continuous = true; // Keep listening until stopped
-    recognition.lang = 'en-US'; // Set language
+    recognition.lang = 'en-US'; // Set default language to English
 
     // Event handler for when speech is recognized
     recognition.onresult = function (event) {
       const transcript = event.results[event.results.length - 1][0].transcript;
-      setOutput(prevOutput => prevOutput + transcript);
+      setOutput(transcript);
+      setFullText(prevOutput => prevOutput + transcript);
+      console.log(fulltext);
     };
 
     // Event handler for errors
@@ -40,7 +43,8 @@ const SpeechRecognitionComponent = () => {
 
   return (
     <div className='p-10'>
-      <button id="startBtn" onClick={handleStart}>Start Listening</button>
+      <button id="startBtn" onClick={handleStart}>Start Listening (English)</button>
+      <button id="startBtnHindi" onClick={() => { recognition.lang = 'hi-IN'; handleStart(); }}>Start Listening (Hindi)</button>
       <button id="stopBtn" onClick={handleStop}>Stop Listening</button>
       <div id="output">{output}</div>
     </div>
