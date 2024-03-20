@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Button,Box, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton } from "@chakra-ui/react";
+import { Button,Box, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, Divider } from "@chakra-ui/react";
 import { GiNotebook } from "react-icons/gi";
 import {Icon, IconButton}from "@chakra-ui/react";
+
 
 function Meetings() {
   const [minutes, setMinutes] = useState("");
@@ -73,9 +74,9 @@ function Meetings() {
 
     try {
       const response = await axios.request(options);
-      //console.log(response.data.openai.generated_text);
+      console.log(response.data.openai.generated_text);
       setMinutes(response.data.openai.generated_text);
-     
+              
       setIsMinutesModalOpen(true);
     } catch (error) {
       console.error(error);
@@ -102,7 +103,7 @@ function Meetings() {
 
     try {
      const response = await axios.request(options);
-      //console.log(response.data.openai.generated_text);
+      console.log(response.data.openai.generated_text);
       
       setPre(response.data.openai.generated_text);
       setIsOpen(true); // Open the modal after generating pre-requisites
@@ -131,7 +132,7 @@ function Meetings() {
 
     try {
       const response = await axios.request(options);
-      //console.log(response.data.openai.generated_text);
+      console.log(response.data.openai.generated_text);
       setSummary(response.data.openai.generated_text);
       setIsModalOpen(true);
     } catch (error) {
@@ -276,29 +277,30 @@ function Meetings() {
                     </button>
                      {/* Modal for displaying pre-requisites */}
                      <Modal isOpen={isOpen} onClose={onClose} >
-                        <ModalOverlay />
+                        <ModalOverlay
+                          bg='blackAlpha.300'
+                          backdropFilter='blur(10px)  brightness(120%) saturate(120%) hue-rotate(360deg)'
+                        />
                         <ModalContent
-                         bg="black"
-                         boxShadow="0 4px 8px 0 #7F5AF0, 0 6px 20px 0 #7F5AF0"
-                         border="2px solid #7F5AF0" // Adjusted border thickness
-                         borderRadius="30"
-                         minH="80vh"
-                         marginBottom={20}
+                                backgroundColor={"#1A202C"}
+                        
+                                border="2px solid "
+                                 className="border-purple-500"
+                                padding="10"
+            
+                                borderRadius="30"
+                                minH="80vh"
+                                minW="60vw"
+                                marginBottom={20}
                         >
 
-                          {/*
-                          <Box >
-                           <Button 
-                    leftIcon={<GiNotebook color={"#7F5AF0"} />}
-                    variant={""}
-                    
-                  >
                    
-                  </Button>
-                      </Box>*/}
-                          <ModalHeader  color="#7F5AF0">Pre-requisites for Next Meeting</ModalHeader>
-                          <ModalCloseButton color="#7F5AF0"/>
-                          <ModalBody color="white">
+                          <ModalHeader className="text-purple-500 text-center">
+                            Pre-requisites for Next Meeting</ModalHeader>
+                          <ModalCloseButton color="white"/>
+                          <Divider/>
+                            <ModalBody color="white" paddingTop={5}>
+                          
                             {/* Display the pre-requisites content */}
                             {pre}
                           </ModalBody >
@@ -318,17 +320,27 @@ function Meetings() {
                   </button>
 
                     <Modal isOpen={isModalOpen} onClose={onCloseModal}>
-               <ModalOverlay />
+               <ModalOverlay
+                bg='blackAlpha.300'
+                backdropFilter='blur(10px)  brightness(120%) saturate(120%) hue-rotate(360deg)'
+               />
                   <ModalContent
-                    bg="black"
-                    boxShadow="0 4px 8px 0 #7F5AF0, 0 6px 20px 0 #7F5AF0"
-                    border="2px solid #7F5AF0" // Adjusted border thickness
+                    backgroundColor={"#1A202C"}
+                        
+                    border="2px solid "
+                     className="border-purple-500"
+                    padding="10"
+
                     borderRadius="30"
                     minH="80vh"
+                    minW="60vw"
+                    marginBottom={20}
                   >
-                  <ModalHeader color="#7F5AF0">AI Summary</ModalHeader>
-                  <ModalCloseButton color="#7F5AF0"/>
-                  <ModalBody  color="white">
+                  <ModalHeader className="text-purple-500 text-center">AI Summary</ModalHeader>
+                  <ModalCloseButton color="white"/>
+                  <Divider/>
+                            <ModalBody color="white" paddingTop={5}>
+              
                     {/* Display the summary content */}
                     {summary}
                   </ModalBody>
@@ -347,17 +359,28 @@ function Meetings() {
                     </button>
                       {/* Minutes Modal */}
                       <Modal isOpen={isMinutesModalOpen} onClose={onCloseMinutesModal}>
-                          <ModalOverlay />
+                          <ModalOverlay
+                           bg='blackAlpha.300'
+                           backdropFilter='blur(10px)  brightness(120%) saturate(120%) hue-rotate(360deg)'
+                          />
                           <ModalContent 
-                           bg="black"
-                           boxShadow="0 4px 8px 0 #7F5AF0, 0 6px 20px 0 #7F5AF0"
-                           border="2px solid  #7F5AF0" // Adjusted border thickness
-                           borderRadius="30"
-                           minH="80vh"
+                          // backgroundColor={"#1A202C"}
+                          backgroundColor={"#1A202C"}
+                        
+                          border="2px solid "
+                           className="border-purple-500"
+                          padding="10"
+      
+                          borderRadius="30"
+                          minH="80vh"
+                          minW="60vw"
+                          marginBottom={20}
                           >
-                            <ModalHeader color="#7F5AF0">Minutes of the Meeting</ModalHeader>
-                            <ModalCloseButton color="#7F5AF0" />
-                            <ModalBody color="white">
+                            <ModalHeader className="text-purple-500 text-center">Minutes of the Meeting</ModalHeader>
+                            <ModalCloseButton color="white" />
+
+                            <Divider/>
+                            <ModalBody color="white" paddingTop={5}>
                               {/* Display the minutes content */}
                               {minutes}
                             </ModalBody>
