@@ -70,7 +70,7 @@ const SpeechRecognitionComponent = () => {
   return (
     <div className="p-10">
       <button id="startBtn" onClick={handleStart}>
-        Start Listening (English)
+        Start Listening
       </button>
       {/* <button
         id="startBtnHindi"
