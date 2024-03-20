@@ -1,11 +1,26 @@
 import { Box, Flex } from "@chakra-ui/react"
+import { UserContext } from "../UserContext.jsx";
+import { useContext, useEffect } from "react";
+import { db } from "../Firebase.js";
+import { getDocs, collection, getFirestore,addDoc } from "firebase/firestore";
 
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/sfPpO1Q42ML
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+
 export default function Component() {
+    const { userState, setUserState } = useContext(UserContext);
+    useEffect(() => {
+      const fetchTranscripts = async () => {
+        try {
+          const querySnapshot = await getDocs(collection(db, "transcript"));
+          const transcriptsData = querySnapshot.docs.map((doc) => doc.data());
+          console.log(transcriptsData);
+        } catch (error) {
+          console.error("Error fetching transcripts:", error);
+        }
+      };
+  
+      fetchTranscripts();
+    }, []);
+
     return (
 
         <Flex

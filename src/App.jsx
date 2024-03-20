@@ -23,9 +23,12 @@ import Meet from "./pages/Meet.jsx";
 import Meetframe from "./pages/Meetframe.jsx";
 import MeetingDetails from "./pages/Agenda.jsx";
 import Tasks from "./pages/Tasks.jsx";
-import { UserContext } from "./UserContext.jsx";
-import { useContext } from "react";
 import Report from "./pages/Report.jsx";
+import { UserContext } from "./UserContext.jsx";
+import { useContext, useEffect } from "react";
+import { db } from "./Firebase.js";
+import { getDocs, collection, getFirestore,addDoc } from "firebase/firestore";
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Outlet />}>
@@ -53,7 +56,6 @@ const router = createBrowserRouter(
 );
 
 export default function App() {
-  const { userState, setUserState } = useContext(UserContext);
-  console.log(userState.mod);
+  // console.log(userState.mod);
   return <RouterProvider router={router} />;
 }

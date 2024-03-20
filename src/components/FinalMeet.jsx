@@ -1,8 +1,8 @@
 import { Button } from "@chakra-ui/button";
-import { Link, VStack, IconButton ,Text} from "@chakra-ui/react";
+import { Link, VStack, IconButton, Text } from "@chakra-ui/react";
 import { Flex, Spacer } from "@chakra-ui/layout";
 import { Avatar, AvatarBadge, AvatarGroup } from "@chakra-ui/avatar";
-import { Tabs, TabList, TabPanels, Tab, TabPanel} from "@chakra-ui/tabs";
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/tabs";
 import { Input } from "@chakra-ui/input";
 import { Icon } from "@chakra-ui/icon";
 import {
@@ -19,7 +19,7 @@ import { useHMSStore, selectPeers } from "@100mslive/react-sdk";
 import Response from "../pages/HtmlResponse";
 import ChangeRole from "./ChangeRole";
 import { redirect, useNavigate } from "react-router-dom";
-import Transcript from "./Transcript"
+import Transcript from "./Transcript";
 export default function Component() {
   const [inputValue, setInputValue] = useState("");
   const [arrayItems, setArrayItems] = useState([]);
@@ -158,9 +158,8 @@ export default function Component() {
             >
               Leave
             </Button>
-            
           </Flex>
-<Transcript/>
+          <Transcript />
         </Flex>
         <Flex w="350px" bg="#1F1F1F" p="4" direction="column">
           <Flex justify="space-between" mb="4">
