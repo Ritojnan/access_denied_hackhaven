@@ -20,7 +20,7 @@ export default function Home() {
       }
     };
 
-    // Add event listener for visibilitychange event
+    
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
     // Cleanup on component unmount
