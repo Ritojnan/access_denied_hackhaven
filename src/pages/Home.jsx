@@ -9,25 +9,25 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 export default function Home() {
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        // Tab switched or window minimized
-        alert('You switched tabs or minimized the window.');
-      } else {
-        // Tab brought into focus or window restored
-        alert('You brought the tab into focus or restored the window.');
-      }
-    };
+  // useEffect(() => {
+  //   const handleVisibilityChange = () => {
+  //     if (document.hidden) {
+  //       // Tab switched or window minimized
+  //       alert('You switched tabs or minimized the window.');
+  //     } else {
+  //       // Tab brought into focus or window restored
+  //       alert('You brought the tab into focus or restored the window.');
+  //     }
+  //   };
 
     
-    document.addEventListener('visibilitychange', handleVisibilityChange);
+  //   document.addEventListener('visibilitychange', handleVisibilityChange);
 
-    // Cleanup on component unmount
-    return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-    };
-  }, []);
+  //   // Cleanup on component unmount
+  //   return () => {
+  //     document.removeEventListener('visibilitychange', handleVisibilityChange);
+  //   };
+  // }, []);
 
 
   return (
