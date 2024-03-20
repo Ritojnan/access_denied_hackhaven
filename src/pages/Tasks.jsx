@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { UserContext } from "../UserContext";
+import { Avatar } from "@chakra-ui/react";
 
 export default function Tasks() {
   const { userState, setUserState } = useContext(UserContext);
@@ -56,13 +57,11 @@ export default function Tasks() {
             <span className="sr-only">Add new task</span>
           </button>
           <button className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground rounded-full w-8 h-8 bg-purple-500 text-white dark:bg-purple-500 dark:text-white">
-            <img
+           <Avatar
               src="/placeholder.svg"
-              width="32"
-              height="32"
-              className="rounded-full"
+              size="sm"
               alt="Avatar"
-              style={{ aspectRatio: "32 / 32", objectFit: "cover" }}
+              css={{ aspectRatio: "1", objectFit: "cover" }}
             />
             <span className="sr-only">Toggle user menu</span>
           </button>
