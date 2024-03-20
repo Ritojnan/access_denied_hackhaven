@@ -17,6 +17,7 @@ import { IoSend } from "react-icons/io5";
 import Conference from "./Conference";
 import { useHMSStore,selectPeers } from "@100mslive/react-sdk";
 import Response from "../pages/HtmlResponse";
+import ChangeRole from "./ChangeRole";
 export default function Component() {
   const [inputValue, setInputValue] = useState("");
   const [arrayItems, setArrayItems] = useState([]);
@@ -85,9 +86,7 @@ const stopSharing = () => {
 
         <Flex alignItems="center" spaceX="4">
         <Response/>
-          <Button bg="gray.800" color="white" px="3" py="1.5" size="sm" className="ml-5">
-            Change Role
-          </Button>
+        <ChangeRole/>
         </Flex>
       </Flex>
       <Flex>

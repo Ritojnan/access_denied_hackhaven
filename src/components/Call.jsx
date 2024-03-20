@@ -10,7 +10,7 @@ export default function Call({ numDivs }) {
     const divs = [];
     for (let i = 0; i < count; i++) {
       divs.push(
-        <Box key={i} bg="blue.500" h="100px" w="100px" m="2">
+        <Box key={i} bg="purple.500" h="100px" w="100px" m="2">
           {i + 1}
         </Box>
       );

@@ -32,7 +32,7 @@ const TiltCard = () => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
             nec odio. Praesent libero. Sed cursus ante dapibus diam.
           </p>
-          <button className="mt-6 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded">
+          <button className="mt-6 px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white font-semibold rounded">
             Learn More
           </button>
         </div>

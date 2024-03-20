@@ -17,7 +17,7 @@ export default function ChangeRole() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
+      <Button onClick={onOpen}>Change Role</Button>
 
       <Modal isOpen={isOpen} onClose={onClose} size={"2xl"}>
         <ModalOverlay />
@@ -60,7 +60,7 @@ export default function ChangeRole() {
                       can also invite attendees on the stage, and respond to
                       public chat messages.
                     </p>
-                    <div className="flex justify-between">
+                    <div className="flex justify-end space-x-4">
                       <Button colorScheme="purple">Invite</Button>
                       <Button colorScheme="purple">Join as Speaker</Button>
                     </div>
@@ -73,7 +73,7 @@ export default function ChangeRole() {
                       audio and video, and can put up messages on the public
                       chat section.
                     </p>
-                    <div className="flex justify-between">
+                    <div className="flex justify-end space-x-4">
                       <Button colorScheme="purple">Invite</Button>
                       <Button colorScheme="purple">Join as Attendee</Button>
                     </div>
