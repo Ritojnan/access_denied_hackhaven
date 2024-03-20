@@ -3,6 +3,7 @@ import { UserContext } from "../UserContext.jsx";
 import { useContext } from "react";
 import { db } from "../Firebase.js";
 import { getDocs, collection, addDoc } from "firebase/firestore";
+import {Link} from "react-router-dom";
 
 const SpeechRecognitionComponent = () => {
   const [output, setOutput] = useState("");
@@ -68,9 +69,21 @@ const SpeechRecognitionComponent = () => {
   }
 
   return (
-    <div className="p-10">
-      <button id="startBtn" onClick={handleStart}>
-        Start Listening (English)
+    <div className="p-10 ">
+      <button id="startBtn" onClick={handleStart}
+      style={{
+         margin: "20px",
+        backgroundColor: "green",
+        borderRadius: "9999px", // A large value to make the button fully rounded
+        padding: "0.5rem 1rem", // Adjust padding as needed
+        color: "white", // Text color
+        border: "none", // Remove border
+        cursor: "pointer", // Show pointer cursor on hover
+        marginRight: "5",
+      }}
+    >
+      
+        Start Listening 
       </button>
       {/* <button
         id="startBtnHindi"
@@ -81,9 +94,39 @@ const SpeechRecognitionComponent = () => {
       >
         Start Listening (Hindi)
       </button> */}
-      <button id="stopBtn" onClick={handleStop}>
-        Stop Listening
-      </button>
+      
+     <button
+  id="stopBtn"
+  onClick={handleStop}
+  style={{
+    marginLeft: "5",
+    marginRight: "5",
+    backgroundColor: "red",
+    borderRadius: "9999px", // A large value to make the button fully rounded
+    padding: "0.5rem 1rem", // Adjust padding as needed
+    color: "white", // Text color
+    border: "none", // Remove border
+    cursor: "pointer", // Show pointer cursor on hover
+  }}
+>
+  Stop Listening
+</button>
+<Link to={"/report"}>
+<button id="reportBtn" 
+      style={{
+         margin: "20px",
+        backgroundColor: "blueviolet",
+        borderRadius: "9999px", // A large value to make the button fully rounded
+        padding: "0.5rem 1rem", // Adjust padding as needed
+        color: "white", // Text color
+        border: "none", // Remove border
+        cursor: "pointer", // Show pointer cursor on hover
+        marginRight: "5",
+      }}
+    >
+      
+        Generate Report
+      </button></Link>
       <div id="output">{output}</div>
     </div>
   );
