@@ -228,7 +228,7 @@ function ChangeRole(props) {
                 </div>
                 <p className="text-gray-400 mb-4">{props.agenda}</p>
               </div>
-            </div>{" "}
+            </div>
           </ModalBody>
 
           <ModalFooter></ModalFooter>

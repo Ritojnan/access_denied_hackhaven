@@ -22,7 +22,8 @@ function JoinForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, roomCode } = inputValues;
-
+    localStorage.setItem("name",name);
+    localStorage.setItem("roomCode",roomCode);
     try {
       const authToken = await hmsActions.getAuthTokenByRoomCode({ roomCode });
       await hmsActions.join({ userName: name, authToken });
