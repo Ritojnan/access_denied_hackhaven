@@ -11,7 +11,9 @@ import {
 import axios from"axios"
 import { v4 as uuidv4 } from 'uuid';
 import ObjectDetection from "./Coco";
+import FinalMeet from "../components/FinalMeet";
 import Response from "./HtmlResponse";
+import { div } from "@tensorflow/tfjs-core";
 
 export default function Meetframe() {
   const isConnected = useHMSStore(selectIsConnectedToRoom);
@@ -57,22 +59,32 @@ export default function Meetframe() {
   }, [hmsActions, isConnected]);
 
   return (
-    <div className="p-16">
+    <div >
       {/* <Header /> */}
       {isConnected ? (
         <div>
-        <Conference />
-        
+        <FinalMeet/>        
       </div>
       ) : (
+        <div 
+        style={{ 
+            backgroundImage: `url(./bgimg.png)`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            minHeight: '100vh',
+          }}>
+        <div className="pt-[28vh]">
         <JoinForm />
+        </div>
+        </div>
       )}
-      <div onClick={()=> generateRoom()}>
-        Click me to genearate code
+      {/* <div onClick={()=> generateRoom()}>
+        Click me to generate code
       </div>
       <div>
       <Response/>
-      </div>
+      </div> */}
 
     </div>
   );

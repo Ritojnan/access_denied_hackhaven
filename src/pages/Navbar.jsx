@@ -79,6 +79,7 @@ function WithSubnavigation() {
             <HStack>
               <Image src="logo.png" w={10} h={10} alt="streamy" />
               <Text
+                fontSize={"2xl"} 
                 textAlign={useBreakpointValue({ base: "center", md: "left" })}
                 fontWeight={"bold"}
                 color={useColorModeValue("black", "white")}
@@ -108,7 +109,7 @@ function WithSubnavigation() {
         >
           <Button
             as={Link}
-            fontSize={"sm"}
+            fontSize={"xl"}
             fontWeight={400}
             variant={"link"}
             to={"/authenticate"}
@@ -118,7 +119,7 @@ function WithSubnavigation() {
           <Button
             onClick={()=> signOut}
             display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
+            fontSize={"xl"}
             fontWeight={600}
             color="white"
             bg={"purple.400"}
@@ -153,7 +154,7 @@ const DesktopNav = () => {
                 as={Link}
                 p={2}
                 to={navItem.to ?? "#"}
-                fontSize={"sm"}
+                fontSize={"xl"}
                 fontWeight={500}
                 color={linkColor}
                 _hover={{
@@ -294,16 +295,20 @@ const MobileNavItem = ({ label, children, to }) => {
 
 const NAV_ITEMS = [
   {
-    label: "Dashboard",
-    to: "/dashboard",
+    label: "Agenda Maker",
+    to: "/Agenda",
   },
   {
-    label: "Stock Trading",
-    to: "/dashboard/stock",
+    label: "Live Stage",
+    to: "/frame",
   },
   {
-    label: "Test Your Knowledge",
-    to: "/dashboard/quiz",
+    label: "Meet History",
+    to: "/Meet",
+  },
+  {
+    label: "Task Assigned",
+    to: "/Task",
   },
 
   {

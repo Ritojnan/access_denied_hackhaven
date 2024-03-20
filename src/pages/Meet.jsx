@@ -1,11 +1,24 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Button,Box, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton } from "@chakra-ui/react";
+import { GiNotebook } from "react-icons/gi";
+import {Icon, IconButton}from "@chakra-ui/react";
 
 function Meetings() {
   const [minutes, setMinutes] = useState("");
   const [pre, setPre] = useState("");
   const [summary, setSummary] = useState("");
   const [show, setShow] = useState(false);
+
+  //for pre
+  const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);//for summary
+  const [isMinutesModalOpen, setIsMinutesModalOpen] = useState(false); //for minutes
+  const onCloseModal = () => setIsModalOpen(false);
+
+  const onClose = () => setIsOpen(false);
+  const onCloseMinutesModal = () => setIsMinutesModalOpen(false);
+
   const transcript = `Project Manager (Sarah): Good morning, everyone. Thank you for joining us today. As you all know, we're here to discuss the launch of our newest product, EcoSpark. I'm thrilled to share with you the details of what we've been working on tirelessly for the past few months.
 
   Marketing Lead (Alex): Thanks, Sarah. I'll take it from here. Our marketing strategy for EcoSpark revolves around highlighting its unique features and addressing the pain points of our target audience. We'll start with teaser campaigns on social media, followed by a full-scale launch campaign across various platforms.
@@ -59,15 +72,18 @@ function Meetings() {
     };
 
     try {
-      const response = await axios.request(options);
-      console.log(response.data.openai.generated_text);
-      setMinutes(response.data.openai.generated_text);
+      //const response = await axios.request(options);
+      //console.log(response.data.openai.generated_text);
+      setMinutes("Helloooooooooooooooooooooooooo minutes");
+     
+      setIsMinutesModalOpen(true);
     } catch (error) {
       console.error(error);
     }
   }
 
   async function generatePre() {
+    console.log("Pre-requisites button clicked"); 
     const options = {
       method: "POST",
       url: "https://api.edenai.run/v2/text/generation",
@@ -85,15 +101,18 @@ function Meetings() {
     };
 
     try {
-      const response = await axios.request(options);
-      console.log(response.data.openai.generated_text);
-      setPre(response.data.openai.generated_text);
+     // const response = await axios.request(options);
+      //console.log(response.data.openai.generated_text);
+      
+      setPre("Hieeeeeeeeeeeeeeeeeeeeeeeeeeee pre");
+      setIsOpen(true); // Open the modal after generating pre-requisites
     } catch (error) {
       console.error(error);
     }
   }
 
   async function generateSummary() {
+    
     const options = {
       method: "POST",
       url: "https://api.edenai.run/v2/text/generation",
@@ -111,9 +130,10 @@ function Meetings() {
     };
 
     try {
-      const response = await axios.request(options);
-      console.log(response.data.openai.generated_text);
-      setSummary(response.data.openai.generated_text);
+      //const response = await axios.request(options);
+      //console.log(response.data.openai.generated_text);
+      setSummary("yayieeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+      setIsModalOpen(true);
     } catch (error) {
       console.error(error);
     }
@@ -187,6 +207,8 @@ function Meetings() {
                       >
                         Pre-requisites for next meet
                       </button>
+                    
+
                       <button
                         className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 self-end"
                         onClick={generateSummary}
@@ -247,18 +269,87 @@ function Meetings() {
                     >
                       Pre-requisites for next meet
                     </button>
+                     {/* Modal for displaying pre-requisites */}
+                     <Modal isOpen={isOpen} onClose={onClose} >
+                        <ModalOverlay />
+                        <ModalContent
+                         bg="black"
+                         boxShadow="0 4px 8px 0 #7F5AF0, 0 6px 20px 0 #7F5AF0"
+                         border="2px solid #7F5AF0" // Adjusted border thickness
+                         borderRadius="30"
+                         minH="80vh"
+                         marginBottom={20}
+                        >
+
+                          {/*
+                          <Box >
+                           <Button 
+                    leftIcon={<GiNotebook color={"#7F5AF0"} />}
+                    variant={""}
+                    
+                  >
+                   
+                  </Button>
+                      </Box>*/}
+                          <ModalHeader  color="#7F5AF0">Pre-requisites for Next Meeting</ModalHeader>
+                          <ModalCloseButton color="#7F5AF0"/>
+                          <ModalBody color="white">
+                            {/* Display the pre-requisites content */}
+                            {pre}
+                          </ModalBody >
+                        </ModalContent>
+                      </Modal>
+
                     <button
                       className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 self-end"
                       onClick={generateSummary}
                     >
                       AI Summary
                     </button>
+                    <Modal isOpen={isModalOpen} onClose={onCloseModal}>
+               <ModalOverlay />
+                  <ModalContent
+                    bg="black"
+                    boxShadow="0 4px 8px 0 #7F5AF0, 0 6px 20px 0 #7F5AF0"
+                    border="2px solid #7F5AF0" // Adjusted border thickness
+                    borderRadius="30"
+                    minH="80vh"
+                  >
+                  <ModalHeader color="#7F5AF0">AI Summary</ModalHeader>
+                  <ModalCloseButton color="#7F5AF0"/>
+                  <ModalBody  color="white">
+                    {/* Display the summary content */}
+                    {summary}
+                  </ModalBody>
+                </ModalContent >
+              </Modal>
                     <button
                       className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 self-end"
                       onClick={generateText}
                     >
                       Minutes
                     </button>
+                      {/* Minutes Modal */}
+                      <Modal isOpen={isMinutesModalOpen} onClose={onCloseMinutesModal}>
+                          <ModalOverlay />
+                          <ModalContent 
+                           bg="black"
+                           boxShadow="0 4px 8px 0 #7F5AF0, 0 6px 20px 0 #7F5AF0"
+                           border="2px solid  #7F5AF0" // Adjusted border thickness
+                           borderRadius="30"
+                           minH="80vh"
+                          >
+                            <ModalHeader color="#7F5AF0">Minutes of the Meeting</ModalHeader>
+                            <ModalCloseButton color="#7F5AF0" />
+                            <ModalBody color="white">
+                              {/* Display the minutes content */}
+                              {minutes}
+                            </ModalBody>
+                          </ModalContent>
+                        </Modal>
+
+
+
                   </div>
                 </div>
               </div>

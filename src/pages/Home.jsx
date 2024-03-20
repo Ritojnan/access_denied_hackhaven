@@ -1,14 +1,44 @@
 import { Box, Container, Flex, Text, Link as ChakraLink, Link,useColorMode, useColorModeValue,Stack, Input, Button, Grid } from "@chakra-ui/react";
+import Transcript from "../components/Transcript";
+import FinalMeet from "../components/FinalMeet";
+import Meet from "../pages/Meet";
+import Conference from "../components/Conference";
+import JoinForm from "../components/JoinForm";
+import Meetframe from "./Meetframe";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        // Tab switched or window minimized
+        alert('You switched tabs or minimized the window.');
+      } else {
+        // Tab brought into focus or window restored
+        alert('You brought the tab into focus or restored the window.');
+      }
+    };
+
+    // Add event listener for visibilitychange event
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    // Cleanup on component unmount
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+
 
   return (
     <Box pt={10}>
 
+
+
       <main>
         <section className="py-6 md:py-12 lg:py-24 xl:py-32"
          style={{ 
-        backgroundImage: `url(./public/bgimg.png)`,
+        backgroundImage: `url(./bgimg.png)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -36,7 +66,7 @@ export default function Home() {
             <Stack spacing={10} px={4} md:px={6}>
               <Stack spacing={4} textAlign="center">
                 <div className="space-y-2">
-                  <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-gray-800">
+                  <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-gray-800 text-black">
                     New Features
                   </div>
                   <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
@@ -100,9 +130,16 @@ export default function Home() {
             Contact Sales
           </Link>
           <Link
-            href="#"
-            className="inline-flex items-center justify-center h-10 px-8 font-medium text-gray-900 bg-white border border-gray-200 rounded-md shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
-          >
+      href="#"
+    className="inline-flex items-center
+   justify-center h-10 px-8 font-medium text-black 
+   bg-transparent border border-gray-200 rounded-md shadow-sm 
+   transition-colors hover:bg-transparent hover:text-gray-500 
+   focus-visible:outline-none focus-visible:ring-1 
+   focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 
+   dark:border-gray-800 dark:text-white dark:hover:text-gray-50 
+   dark:hover:bg-transparent dark:focus-visible:ring-gray-300"
+>
             Learn more
           </Link>
         </div>
