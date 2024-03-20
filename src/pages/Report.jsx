@@ -1,18 +1,25 @@
 import { Box, Flex } from "@chakra-ui/react"
 import { UserContext } from "../UserContext.jsx";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { db } from "../Firebase.js";
 import { getDocs, collection, getFirestore,addDoc } from "firebase/firestore";
-
+import axios from "axios";
+import { useHMSStore, selectPeers } from "@100mslive/react-sdk";
 
 export default function Component() {
+  const [summary, setSummary] = useState("");
+  const peers = useHMSStore(selectPeers);
+  const peerslen = peers.length;
+  const[trans,setTrans]=useState("")
     const { userState, setUserState } = useContext(UserContext);
+    const { transdata,setState} = useState("")
     useEffect(() => {
       const fetchTranscripts = async () => {
         try {
           const querySnapshot = await getDocs(collection(db, "transcript"));
           const transcriptsData = querySnapshot.docs.map((doc) => doc.data());
           console.log(transcriptsData);
+          setState(transcriptsData.join(","))
         } catch (error) {
           console.error("Error fetching transcripts:", error);
         }
@@ -20,7 +27,45 @@ export default function Component() {
   
       fetchTranscripts();
     }, []);
+    const [randomValue, setRandomValue] = useState(0);
+    const [evaluation, setEvaluation] = useState('');
 
+    useEffect(() => {
+        const random = Math.random(); // Generate a random number between 0 and 1
+        setRandomValue(random);
+        
+        // Check if the random number is less than 0.5 (50%)
+        const evaluationResult = random < 0.5 ? ' is less than 50%' : ' is greater than or equal to 50%';
+        setEvaluation(evaluationResult);
+    }, []);
+    async function generateText() {
+      const options = {
+        method: "POST",
+        url: "https://api.edenai.run/v2/text/generation",
+        headers: {
+          authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiOGZjMDdiMWItZDVhYS00MDEwLWJjMzEtYjRjMGJjNmNmOWJkIiwidHlwZSI6ImFwaV90b2tlbiJ9.FRpoCr6xHdRLkoW_ysOWdzAqW7gS-blH9cdHAo3NAaY",
+        },
+        data: {
+          providers: "openai",
+          text: `${transdata} generate after meet summary for this in 30 words         
+          `,
+          temperature: 0.2,
+          max_tokens: 1024,
+          fallback_providers: "",
+        },
+      };
+  
+      try {
+        const response = await axios.request(options);
+        console.log(response.data.openai.generated_text);
+        
+                
+        setTrans(response.data.openai.generated_text)
+      } catch (error) {
+        console.error(error);
+      }
+    }
     return (
 
         <Flex
@@ -31,11 +76,9 @@ export default function Component() {
       >
           <div className="container grid gap-6 px-4 md:gap-10 md:px-6">
           <div className="flex flex-col gap-4 md:gap-6">
-            <h1 className="text-3xl md:text-5xl font-bold tracking-tighter">After Meeting Summary</h1>
+            <h1 onClick={generateText} className="text-3xl md:text-5xl font-bold tracking-tighter">After Meeting Summary</h1>
             <p className="max-w-prose text-gray-400 md:text-lg">
-              This meeting was held to discuss the progress of ongoing projects and to plan for future initiatives.
-              Attendees included team members from various departments, including Marketing, Sales, and Product
-              Development.
+              {trans}
             </p>
           </div>
           <div className="grid gap-4">
@@ -62,9 +105,9 @@ export default function Component() {
           <div className="grid gap-2">
             <div className="grid grid-cols-2 gap-2">
               <div className="text-sm font-medium text-gray-400">Total Attendees</div>
-              <div className="text-sm text-right">25</div>
+              <div className="text-sm text-right">{peerslen}</div>
               <div className="text-sm font-medium text-gray-400">Active Participants</div>
-              <div className="text-sm text-right">20</div>
+              <div className="text-sm text-right">{peerslen}</div>
             </div>
           </div>
           <section className="grid gap-6 mt-8">
@@ -97,10 +140,7 @@ export default function Component() {
             <div className="grid gap-2">
               <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Statistics</h2>
               <div className="grid grid-cols-2 gap-2">
-                <div className="text-sm font-medium text-gray-400">Total Projects Discussed</div>
-                <div className="text-sm text-right">8</div>
-                <div className="text-sm font-medium text-gray-400">Action Items Assigned</div>
-                <div className="text-sm text-right">12</div>
+                Evaluation Activity Rito : {evaluation}
               </div>
             </div>
           </section>
