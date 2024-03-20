@@ -69,7 +69,6 @@ const SpeechRecognitionComponent = () => {
   }
 
   return (
-<<<<<<< HEAD
     <div className="p-10 ">
       <button id="startBtn" onClick={handleStart}
       style={{
@@ -85,11 +84,6 @@ const SpeechRecognitionComponent = () => {
     >
       
         Start Listening 
-=======
-    <div className="p-10">
-      <button id="startBtn" onClick={handleStart}>
-        Start Listening
->>>>>>> 5af17caa4bf45e8e2e4115a73a8a0c594c8963e1
       </button>
       {/* <button
         id="startBtnHindi"

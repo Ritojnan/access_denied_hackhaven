@@ -72,7 +72,7 @@ function Meetings() {
       const response = await axios.request(options);
       console.log(response.data.openai.generated_text);
       setMinutes(response.data.openai.generated_text);
-              
+      
       setIsMinutesModalOpen(true);
     } catch (error) {
       console.error(error);
@@ -366,7 +366,7 @@ function Meetings() {
                   <ModalHeader className="text-purple-500 text-center">AI Summary</ModalHeader>
                   <ModalCloseButton color="white"/>
                   <Divider/>
-                            <ModalBody ref={modalRef} id="modal" color="white" paddingTop={5}>
+                            <ModalBody id="modal" color="white" paddingTop={5}>
               
                     {/* Display the summary content */}
                     {summary}
@@ -410,6 +410,7 @@ function Meetings() {
                             <ModalBody color="white" paddingTop={5}>
                               {/* Display the minutes content */}
                               {minutes}
+                              
                             </ModalBody>
                           </ModalContent>
                         </Modal>
