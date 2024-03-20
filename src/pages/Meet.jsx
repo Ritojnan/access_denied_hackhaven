@@ -72,9 +72,9 @@ function Meetings() {
     };
 
     try {
-      //const response = await axios.request(options);
+      const response = await axios.request(options);
       //console.log(response.data.openai.generated_text);
-      setMinutes("Helloooooooooooooooooooooooooo minutes");
+      setMinutes(response.data.openai.generated_text);
      
       setIsMinutesModalOpen(true);
     } catch (error) {
@@ -101,10 +101,10 @@ function Meetings() {
     };
 
     try {
-     // const response = await axios.request(options);
+     const response = await axios.request(options);
       //console.log(response.data.openai.generated_text);
       
-      setPre("Hieeeeeeeeeeeeeeeeeeeeeeeeeeee pre");
+      setPre(response.data.openai.generated_text);
       setIsOpen(true); // Open the modal after generating pre-requisites
     } catch (error) {
       console.error(error);
@@ -130,9 +130,9 @@ function Meetings() {
     };
 
     try {
-      //const response = await axios.request(options);
+      const response = await axios.request(options);
       //console.log(response.data.openai.generated_text);
-      setSummary("yayieeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+      setSummary(response.data.openai.generated_text);
       setIsModalOpen(true);
     } catch (error) {
       console.error(error);
