@@ -265,7 +265,12 @@ function Meetings() {
                   <div className="grid gap-4 p-6">
                     <button
                       onClick={generatePre}
-                      className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 self-end"
+                      className="inline-flex items-center
+                      justify-center whitespace-nowrap 
+                      rounded-md text-sm font-medium ring-offset-background transition-colors
+                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring 
+                       focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 
+                       border border-input bg-purple-500 hover:bg-purple-700 text-white h-10 px-4 py-2 self-end"
                     >
                       Pre-requisites for next meet
                     </button>
@@ -300,12 +305,18 @@ function Meetings() {
                         </ModalContent>
                       </Modal>
 
-                    <button
-                      className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 self-end"
-                      onClick={generateSummary}
-                    >
-                      AI Summary
-                    </button>
+                      <button
+                    className="inline-flex items-center
+                     justify-center whitespace-nowrap 
+                     rounded-md text-sm font-medium ring-offset-background transition-colors
+                      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring 
+                      focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 
+                      border border-input bg-purple-500 hover:bg-purple-700 text-white h-10 px-4 py-2 self-end"
+                    onClick={generateSummary}
+                  >
+                    AI Summary
+                  </button>
+
                     <Modal isOpen={isModalOpen} onClose={onCloseModal}>
                <ModalOverlay />
                   <ModalContent
@@ -324,7 +335,12 @@ function Meetings() {
                 </ModalContent >
               </Modal>
                     <button
-                      className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 self-end"
+                     className="inline-flex items-center
+                     justify-center whitespace-nowrap 
+                     rounded-md text-sm font-medium ring-offset-background transition-colors
+                      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring 
+                      focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 
+                      border border-input bg-purple-500 hover:bg-purple-700 text-white h-10 px-4 py-2 self-end"
                       onClick={generateText}
                     >
                       Minutes
@@ -383,10 +399,23 @@ function Meetings() {
               <div className="p-0">
                 <div className="border-t border-gray-200 dark:border-gray-800">
                   <div className="grid gap-4 p-6">
-                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 self-end">
+                    <button  
+                      className="inline-flex items-center
+                      justify-center whitespace-nowrap 
+                      rounded-md text-sm font-medium ring-offset-background transition-colors
+                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring 
+                       focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 
+                       border border-input bg-purple-500 hover:bg-purple-700 text-white h-10 px-4 py-2 self-end"
+                       >
                       Chat with AI
                     </button>
-                    <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 self-end">
+                    <button 
+                      className="inline-flex items-center
+                      justify-center whitespace-nowrap 
+                      rounded-md text-sm font-medium ring-offset-background transition-colors
+                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring 
+                       focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 
+                       border border-input bg-purple-500 hover:bg-purple-700 text-white h-10 px-4 py-2 self-end">
                       AI Summary
                     </button>
                   </div>
