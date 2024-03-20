@@ -8,6 +8,7 @@ import { useHMSStore, selectPeers } from "@100mslive/react-sdk";
 
 export default function Component() {
   const [summary, setSummary] = useState("");
+
   const peers = useHMSStore(selectPeers);
   const peerslen = peers.length;
   const[trans,setTrans]=useState("")
@@ -38,7 +39,36 @@ export default function Component() {
         const evaluationResult = random < 0.5 ? ' is less than 50%' : ' is greater than or equal to 50%';
         setEvaluation(evaluationResult);
     }, []);
+    async function generateMinutes() {
+      const options = {
+        method: "POST",
+        url: "https://api.edenai.run/v2/text/generation",
+        headers: {
+          authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiOGZjMDdiMWItZDVhYS00MDEwLWJjMzEtYjRjMGJjNmNmOWJkIiwidHlwZSI6ImFwaV90b2tlbiJ9.FRpoCr6xHdRLkoW_ysOWdzAqW7gS-blH9cdHAo3NAaY",
+        },
+        data: {
+          providers: "openai",
+          text: `${transdata} generate after meet the minutes for the transcript         
+          `,
+          temperature: 0.2,
+          max_tokens: 1024,
+          fallback_providers: "",
+        },
+      };
+  
+      try {
+        const response = await axios.request(options);
+        console.log(response.data.openai.generated_text);
+        
+                
+        setSummary(response.data.openai.generated_text)
+      } catch (error) {
+        console.error(error);
+      }
+    }
     async function generateText() {
+      await generateMinutes();
       const options = {
         method: "POST",
         url: "https://api.edenai.run/v2/text/generation",
@@ -82,25 +112,8 @@ export default function Component() {
             </p>
           </div>
           <div className="grid gap-4">
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Key Points</h2>
-            <ul className="grid gap-4">
-              <li className="flex items-center">
-                <CheckCircleIcon className="h-4 w-4 mr-2.5 text-green-500" />
-                <span>Discuss the new marketing strategy to increase customer engagement.</span>
-              </li>
-              <li className="flex items-center">
-                <CheckCircleIcon className="h-4 w-4 mr-2.5 text-green-500" />
-                <span>Review the progress of the upcoming product launch.</span>
-              </li>
-              <li className="flex items-center">
-                <CheckCircleIcon className="h-4 w-4 mr-2.5 text-green-500" />
-                <span>Plan the sales targets for the next quarter.</span>
-              </li>
-              <li className="flex items-center">
-                <CheckCircleIcon className="h-4 w-4 mr-2.5 text-green-500" />
-                <span>Introduce the new customer support system.</span>
-              </li>
-            </ul>
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Minutes </h2>
+            {summary}
           </div>
           <div className="grid gap-2">
             <div className="grid grid-cols-2 gap-2">
