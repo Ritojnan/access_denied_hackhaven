@@ -10,27 +10,14 @@ const SpeechRecognitionComponent = () => {
   let recognition = null;
   const { userState, setUserState } = useContext(UserContext);
 
-  useEffect(() => {
-    const fetchTranscripts = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, "transcript"));
-        const transcriptsData = querySnapshot.docs.map((doc) => doc.data());
-        console.log(transcriptsData);
-      } catch (error) {
-        console.error("Error fetching transcripts:", error);
-      }
-    };
-
-    fetchTranscripts();
-  }, []);
-
   const addTranscript = async (transcript) => {
     try {
       const querySnapshot = await getDocs(collection(db, "transcript"));
-
+      const name=localStorage.getItem("name")
+      console.log(name)
       const transcriptData = {
         meetData: transcript,
-        user: "Rito",
+        user: name,
         docNo: querySnapshot.docs.length + 1,
         // You can remove docNo from here, Firestore will automatically assign a unique ID
       };
@@ -85,7 +72,7 @@ const SpeechRecognitionComponent = () => {
       <button id="startBtn" onClick={handleStart}>
         Start Listening (English)
       </button>
-      <button
+      {/* <button
         id="startBtnHindi"
         onClick={() => {
           recognition.lang = "hi-IN";
@@ -93,7 +80,7 @@ const SpeechRecognitionComponent = () => {
         }}
       >
         Start Listening (Hindi)
-      </button>
+      </button> */}
       <button id="stopBtn" onClick={handleStop}>
         Stop Listening
       </button>
