@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 import { Button,Box, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, Divider } from "@chakra-ui/react";
 import { GiNotebook } from "react-icons/gi";
 import {Icon, IconButton}from "@chakra-ui/react";
+import { db } from "../Firebase.js";
+import { getDocs, collection, getFirestore,addDoc } from "firebase/firestore";
 
 
 function Meetings() {
@@ -10,6 +12,26 @@ function Meetings() {
   const [pre, setPre] = useState("");
   const [summary, setSummary] = useState("");
   const [show, setShow] = useState(false);
+  const [meetT,setMeetT] = useState("")
+
+  useEffect(() => {
+    const fetchTranscripts = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'transcript'));
+        const transcriptsData = querySnapshot.docs.map(doc => doc.data());
+        
+        transcriptsData.sort((a, b) => a.docNo - b.docNo);
+        
+        const meetingData = transcriptsData.map(transcript => `${transcript.user}: ${transcript.meetData}`);
+        
+        console.log(meetingData.join(" "));
+        setMeetT(meetingData.join(" , "))
+      } catch (error) {
+        console.error('Error fetching transcripts:', error);
+      }
+    };
+    fetchTranscripts()
+  })
 
   //for pre
   const [isOpen, setIsOpen] = useState(false);
@@ -20,35 +42,8 @@ function Meetings() {
   const onClose = () => setIsOpen(false);
   const onCloseMinutesModal = () => setIsMinutesModalOpen(false);
 
-  const transcript = `Project Manager (Sarah): Good morning, everyone. Thank you for joining us today. As you all know, we're here to discuss the launch of our newest product, EcoSpark. I'm thrilled to share with you the details of what we've been working on tirelessly for the past few months.
 
-  Marketing Lead (Alex): Thanks, Sarah. I'll take it from here. Our marketing strategy for EcoSpark revolves around highlighting its unique features and addressing the pain points of our target audience. We'll start with teaser campaigns on social media, followed by a full-scale launch campaign across various platforms.
-  
-  Design Lead (Emily): Building on that, the design team has crafted visually appealing assets to accompany our marketing efforts. We have mockups, product images, and animations ready to go. Our goal is to ensure that every touchpoint reflects the elegance and functionality of EcoSpark.
-  
-  Sales Representative (Jason): From a sales perspective, our approach will be to emphasize the value proposition of EcoSpark. We'll equip our sales team with comprehensive training materials and provide them with the necessary resources to engage with potential customers effectively.
-  
-  Product Developer (Michael): I'm excited to see the culmination of our efforts. The development team has put in countless hours to ensure that EcoSpark meets the highest standards of quality and performance. We've conducted rigorous testing and gathered valuable feedback to refine the product further.
-  
-  Project Manager (Sarah): Great work, everyone. Now, let's move on to assigning tasks for the upcoming weeks. Alex, could you please finalize the social media calendar and coordinate with the design team for graphics?
-  
-  Marketing Lead (Alex): Absolutely, Sarah. I'll make sure we stay on track with our marketing schedule.
-  
-  Project Manager (Sarah): Emily, could you ensure that the product packaging and promotional materials are ready for production by the end of next week?
-  
-  Design Lead (Emily): Of course, Sarah. We'll prioritize these tasks to meet the deadline.
-  
-  Project Manager (Sarah): Jason, I need you to coordinate with the marketing team to develop sales collateral and training materials for our sales team.
-  
-  Sales Representative (Jason): No problem, Sarah. I'll collaborate closely with the marketing team to align our efforts.
-  
-  Project Manager (Sarah): And finally, Michael, could you provide an update on any additional features or enhancements that we can incorporate into EcoSpark before the launch?
-  
-  Product Developer (Michael): Certainly, Sarah. I'll review the feedback and see if there are any last-minute improvements we can make.
-  
-  Project Manager (Sarah): Excellent. Let's reconvene in two weeks to review our progress and address any challenges. Thank you all for your dedication and hard work.`;
-
-  async function generateText() {
+  async function generateText(transcript) {
     const options = {
       method: "POST",
       url: "https://api.edenai.run/v2/text/generation",
@@ -83,7 +78,7 @@ function Meetings() {
     }
   }
 
-  async function generatePre() {
+  async function generatePre(transcript) {
     console.log("Pre-requisites button clicked"); 
     const options = {
       method: "POST",
@@ -112,7 +107,9 @@ function Meetings() {
     }
   }
 
-  async function generateSummary() {
+
+
+  async function generateSummary(transcript) {
     
     const options = {
       method: "POST",
@@ -139,6 +136,34 @@ function Meetings() {
       console.error(error);
     }
   }
+  const transcript = `Project Manager (Sarah): Good morning, everyone. Thank you for joining us today. As you all know, we're here to discuss the launch of our newest product, EcoSpark. I'm thrilled to share with you the details of what we've been working on tirelessly for the past few months.
+
+  Marketing Lead (Alex): Thanks, Sarah. I'll take it from here. Our marketing strategy for EcoSpark revolves around highlighting its unique features and addressing the pain points of our target audience. We'll start with teaser campaigns on social media, followed by a full-scale launch campaign across various platforms.
+  
+  Design Lead (Emily): Building on that, the design team has crafted visually appealing assets to accompany our marketing efforts. We have mockups, product images, and animations ready to go. Our goal is to ensure that every touchpoint reflects the elegance and functionality of EcoSpark.
+  
+  Sales Representative (Jason): From a sales perspective, our approach will be to emphasize the value proposition of EcoSpark. We'll equip our sales team with comprehensive training materials and provide them with the necessary resources to engage with potential customers effectively.
+  
+  Product Developer (Michael): I'm excited to see the culmination of our efforts. The development team has put in countless hours to ensure that EcoSpark meets the highest standards of quality and performance. We've conducted rigorous testing and gathered valuable feedback to refine the product further.
+  
+  Project Manager (Sarah): Great work, everyone. Now, let's move on to assigning tasks for the upcoming weeks. Alex, could you please finalize the social media calendar and coordinate with the design team for graphics?
+  
+  Marketing Lead (Alex): Absolutely, Sarah. I'll make sure we stay on track with our marketing schedule.
+  
+  Project Manager (Sarah): Emily, could you ensure that the product packaging and promotional materials are ready for production by the end of next week?
+  
+  Design Lead (Emily): Of course, Sarah. We'll prioritize these tasks to meet the deadline.
+  
+  Project Manager (Sarah): Jason, I need you to coordinate with the marketing team to develop sales collateral and training materials for our sales team.
+  
+  Sales Representative (Jason): No problem, Sarah. I'll collaborate closely with the marketing team to align our efforts.
+  
+  Project Manager (Sarah): And finally, Michael, could you provide an update on any additional features or enhancements that we can incorporate into EcoSpark before the launch?
+  
+  Product Developer (Michael): Certainly, Sarah. I'll review the feedback and see if there are any last-minute improvements we can make.
+  
+  Project Manager (Sarah): Excellent. Let's reconvene in two weeks to review our progress and address any challenges. Thank you all for your dedication and hard work.`;
+
 
   return (
     <div className="bg-gray-50 dark:bg-gray-950 py-12 pt-32">
@@ -157,7 +182,7 @@ function Meetings() {
             </p>
           </div>
           <div className="grid gap-4">
-            {show && (
+            {true && (
               <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
                 <div className="space-y-1.5 p-6 flex flex-col gap-1">
                   <h3 className="text-2xl font-semibold whitespace-nowrap leading-none tracking-tight">
@@ -178,7 +203,7 @@ function Meetings() {
                         Ritojnan De
                       </p>
                       <p className="text-sm text-muted-foreground">
-                        Siddhima Mukherjee
+                        Shreyans Jain
                       </p>
                     </div>
                     <div className="flex flex-col gap-1.5">
@@ -203,7 +228,7 @@ function Meetings() {
                   <div className="border-t border-gray-200 dark:border-gray-800">
                     <div className="grid gap-4 p-6">
                       <button
-                        onClick={generatePre}
+                        onClick={()=>generatePre(meetT)}
                         className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 self-end bg-purple-500 hover:bg-purple-700 text-white"
                       >
                         Pre-requisites for next meet
@@ -212,14 +237,14 @@ function Meetings() {
 
                       <button
                         className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 self-end bg-purple-500 hover:bg-purple-700 text-white"
-                        onClick={generateSummary}
+                        onClick={()=>generateSummary(meetT)}
 
                       >
                         AI Summary
                       </button>
                       <button
                         className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 self-end bg-purple-500 hover:bg-purple-700 text-white"
-                        onClick={generateText}
+                        onClick={()=>generateText(meetT)}
                       >
                         Minutes
                       </button>
@@ -266,7 +291,7 @@ function Meetings() {
                 <div className="border-t border-gray-200 dark:border-gray-800">
                   <div className="grid gap-4 p-6">
                     <button
-                      onClick={generatePre}
+                      onClick={()=>generatePre(transcript)}
                       className="inline-flex items-center
                       justify-center whitespace-nowrap 
                       rounded-md text-sm font-medium ring-offset-background transition-colors
@@ -315,7 +340,7 @@ function Meetings() {
                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring 
                       focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 
                       border border-input bg-purple-500 hover:bg-purple-700 text-white h-10 px-4 py-2 self-end"
-                    onClick={generateSummary}
+                    onClick={()=>generateSummary(transcript)}
                   >
                     AI Summary
                   </button>
@@ -354,7 +379,7 @@ function Meetings() {
                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring 
                       focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 
                       border border-input bg-purple-500 hover:bg-purple-700 text-white h-10 px-4 py-2 self-end"
-                      onClick={generateText}
+                      onClick={()=>generateText(transcript)}
                     >
                       Minutes
                     </button>
