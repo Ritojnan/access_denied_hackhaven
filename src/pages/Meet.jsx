@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useRef } from "react";
 import axios from "axios";
 import { Button,Box, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, Divider } from "@chakra-ui/react";
 import { GiNotebook } from "react-icons/gi";
@@ -13,6 +13,7 @@ function Meetings() {
   const [summary, setSummary] = useState("");
   const [show, setShow] = useState(false);
   const [meetT,setMeetT] = useState("")
+  const modalRef = useRef(null);
 
   useEffect(() => {
     const fetchTranscripts = async () => {
@@ -365,7 +366,7 @@ function Meetings() {
                   <ModalHeader className="text-purple-500 text-center">AI Summary</ModalHeader>
                   <ModalCloseButton color="white"/>
                   <Divider/>
-                            <ModalBody color="white" paddingTop={5}>
+                            <ModalBody ref={modalRef} id="modal" color="white" paddingTop={5}>
               
                     {/* Display the summary content */}
                     {summary}
