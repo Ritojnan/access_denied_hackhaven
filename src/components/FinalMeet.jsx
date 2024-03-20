@@ -85,7 +85,7 @@ const stopSharing = () => {
 
         <Flex alignItems="center" spaceX="4">
         <Response/>
-          <Button bg="gray.800" color="white" px="3" py="1.5" size="sm">
+          <Button bg="gray.800" color="white" px="3" py="1.5" size="sm" className="ml-5">
             Change Role
           </Button>
         </Flex>
